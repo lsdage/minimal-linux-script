@@ -44,5 +44,6 @@ xorriso \
   -boot-info-table \
   ./
 cd ..
+isohybrid minimal_linux_live.iso
 set +ex
 
