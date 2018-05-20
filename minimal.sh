@@ -27,9 +27,7 @@ chmod +x init
 find . | cpio -R root:root -H newc -o | gzip > ../../isoimage/rootfs.gz
 cd ../../linux-$KERNEL_VERSION
 make mrproper defconfig
-sed -i 's/.*CONFIG_USB_XHCI_HCD.*/CONFIG_USB_XHCI_HCD=y/' .config
-sed -i '/CONFIG_USB_XHCI_HCD=y/a CONFIG_USB_XHCI_DBGCAP=n' .config
-sed -i '/CONFIG_USB_XHCI_DBGCAP=n/a CONFIG_USB_XHCI_PLATFORM=n' .config
+sed -i 's/.*CONFIG_USB_XHCI_HCD.*/CONFIG_USB_XHCI_HCD=y\nCONFIG_USB_XHCI_DBGCAP=n\nCONFIG_USB_XHCI_PLATFORM=n/' .config
 make bzImage
 cp arch/x86/boot/bzImage ../isoimage/kernel.gz
 cd ../isoimage
