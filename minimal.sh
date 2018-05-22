@@ -16,7 +16,7 @@ sed -i 's/.*CONFIG_STATIC.*/CONFIG_STATIC=y/' .config
 make busybox install
 cd _install
 rm -f linuxrc
-mkdir dev proc sys
+mkdir dev proc sys mnt
 echo '#!/bin/sh' > init
 echo 'dmesg -n 1' >> init
 echo 'mount -t devtmpfs none /dev' >> init
