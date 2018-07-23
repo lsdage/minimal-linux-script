@@ -17,7 +17,7 @@ mkdir isoimage
 cd busybox-$BUSYBOX_VERSION
 make distclean defconfig
 sed -i 's/.*CONFIG_STATIC.*/CONFIG_STATIC=y/' .config
-make busybox install
+make -j${CORES} busybox install
 cd _install
 rm -f linuxrc
 mkdir dev proc sys mnt
