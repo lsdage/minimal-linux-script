@@ -3,6 +3,10 @@ set -ex
 KERNEL_VERSION=4.17.9
 BUSYBOX_VERSION=1.29.1
 SYSLINUX_VERSION=6.03
+
+CORES=$(grep -c ^processor /proc/cpuinfo)
+CORES=$((CORES + 1))
+
 wget -O kernel.tar.xz http://kernel.org/pub/linux/kernel/v4.x/linux-$KERNEL_VERSION.tar.xz
 wget -O busybox.tar.bz2 http://busybox.net/downloads/busybox-$BUSYBOX_VERSION.tar.bz2
 wget -O syslinux.tar.xz http://kernel.org/pub/linux/utils/boot/syslinux/syslinux-$SYSLINUX_VERSION.tar.xz
@@ -32,7 +36,7 @@ sed -i 's/.*CONFIG_USB_XHCI_HCD.*/'\
 'CONFIG_USB_XHCI_DBGCAP=n\n'\
 'CONFIG_USB_XHCI_PLATFORM=n'\
 '/' .config
-make bzImage
+make -j${CORES} bzImage
 cp arch/x86/boot/bzImage ../isoimage/kernel.gz
 cd ../isoimage
 cp ../syslinux-$SYSLINUX_VERSION/bios/core/isolinux.bin .
