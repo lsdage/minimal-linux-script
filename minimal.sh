@@ -1,6 +1,6 @@
 #!/bin/sh
 set -ex
-KERNEL_VERSION=4.17.9
+KERNEL_VERSION=4.18.3
 BUSYBOX_VERSION=1.29.1
 SYSLINUX_VERSION=6.03
 wget -O kernel.tar.xz http://kernel.org/pub/linux/kernel/v4.x/linux-$KERNEL_VERSION.tar.xz
