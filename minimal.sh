@@ -1,7 +1,7 @@
 #!/bin/sh
 set -ex
 KERNEL_VERSION=4.19.53
-BUSYBOX_VERSION=1.29.3
+BUSYBOX_VERSION=1.30.1
 SYSLINUX_VERSION=6.03
 
 CORES=$(grep -c ^processor /proc/cpuinfo)
